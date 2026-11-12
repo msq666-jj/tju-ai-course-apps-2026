@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>线上作业4提交助手｜我的第一个AI数据应用</title>
+  <link rel="stylesheet" href="submission.css">
+</head>
+<body>
+  <main class="page">
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">ONLINE ASSIGNMENT 04 / AI DATA APPLICATION</p>
+        <h1>我的第一个<br>AI数据应用</h1>
+        <p class="subtitle">线上作业4提交内容。按当前项目的提交模板整理，核心字段、视图、AI辅助与人工边界已经分开说明。</p>
+        <div class="metrics">
+          <span class="metric"><b>8</b> 个核心字段</span>
+          <span class="metric"><b>3</b> 种数据视图</span>
+          <span class="metric"><b>1</b> 个AI辅助字段</span>
+          <span class="metric"><b>1</b> 个可访问应用</span>
+        </div>
+      </div>
+      <div class="issue"><strong>04</strong><span>数据应用<br>个人作业</span></div>
+    </header>
+
+    <aside class="notice">
+      <div><p><strong>提交重点：</strong>作业要求的是飞书多维表格应用链接。当前可访问网页用于展示系统结构和交互；正式提交前，作品链接应替换为已在飞书创建并分享的多维表格。</p></div>
+    </aside>
+
+    <section class="section">
+      <div class="section-head">
+        <div><span class="section-index">01 / 研究主题</span><h2>应用名称</h2></div>
+        <button class="copy" type="button" data-copy-target="topic">复制</button>
+      </div>
+      <div class="copy-block short" id="topic">学期行动与机会系统 V1.0</div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div><span class="section-index">02 / 核心内容</span><h2>数据应用设计</h2><p class="hint">粘贴到表单“核心内容”栏。</p></div>
+        <button class="copy" type="button" data-copy-target="body">复制</button>
+      </div>
+      <div class="copy-block" id="body">①应用服务谁、解决什么问题
+服务磨帅齐，持续管理课程作业、成长机会、英语训练和体能安排，解决任务散落、状态不明、只记录却不推进的问题。
+
+②核心表与字段
+主表为“行动项”，包含8个核心字段：行动名称、类型、关联目标、优先级、截止日期、状态、下一步行动、AI下一步建议。另记录预计用时，用于周计划排期。
+
+③两个主要视图
+1. 行动看板：按“待开始、进行中、待检查、已完成”分组，快速看出任务卡在哪里。
+2. 截止时间线：按截止日期排序，提前发现三天内需要推进的事项。总表用于查看完整字段和核对数据。
+
+④AI辅助字段与人工确认
+AI下一步建议读取行动名称、关联目标、截止日期和下一步行动，提示临期风险、信息缺口和推荐动作。截止日期、优先级、是否放弃机会、预计投入时间与最终提交结果必须由本人确认。</div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div><span class="section-index">03 / 作品链接</span><h2>数据应用入口</h2><p class="hint">正式提交时优先使用飞书多维表格链接；下方为系统展示版。</p></div>
+        <button class="copy" type="button" data-copy-target="worklink">复制</button>
+      </div>
+      <div class="copy-block link-block" id="worklink"><a href="https://msq666-jj.github.io/tju-ai-course-apps-2026/" target="_blank" rel="noreferrer">https://msq666-jj.github.io/tju-ai-course-apps-2026/</a></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div><span class="section-index">04 / 一句话反思</span><h2>只保留一个功能</h2></div>
+        <button class="copy" type="button" data-copy-target="reflection">复制</button>
+      </div>
+      <div class="copy-block short" id="reflection">如果只能保留一个功能，我会保留“下一步行动”字段，因为它把一条记录变成可以立刻推进的动作。</div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div><span class="section-index">05 / AI参与声明</span><h2>人机分工说明</h2></div>
+        <button class="copy" type="button" data-copy-target="statement">复制</button>
+      </div>
+      <div class="copy-block" id="statement">使用的 AI 工具：OpenAI Codex（GPT-5）。
+AI 参与的环节：构思；写作初稿；数据处理（字段与示例任务整理）；网页制作。
+AI 做了什么：根据“任务容易散落”的问题，提出行动管理表的字段结构；生成示例任务；搭建表格、看板、时间线三种视图，并实现AI初筛与人工确认状态。
+我做了什么（我的判断、取舍和修改）：我选定“学期行动与机会管理”作为真实场景，确定只保留8个真正帮助判断和行动的核心字段；删除家庭、收入、恋爱等无关敏感信息；把AI初筛限定为建议，不替自己决定优先级和最终行动。
+我核查了哪些内容，怎么核查的：逐项检查字段是否覆盖“记录、判断、行动、复盘”；在桌面和手机尺寸实际测试新增任务、视图切换、状态推进和AI建议；核对默认任务均为真实可执行事项，没有虚构成果。
+目前仍不确定的地方：AI字段对模糊任务的判断稳定性仍需在实际使用中观察；目前展示版使用本地规则演示AI逻辑，正式飞书多维表格中的AI提示词还需要根据真实任务继续调整。
+我确认以上说明属实，并对提交的作品负责。署名：磨帅齐</div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><span class="section-index">06 / 提交检查</span><h2>最后核对</h2></div></div>
+      <ul class="checklist">
+        <li>学生姓名填写“磨帅齐”，学号填写“3026231013”。</li>
+        <li>作业分类选择“线上作业4：数据应用”。</li>
+        <li>正式提交前，把作品链接替换为飞书多维表格应用链接。</li>
+        <li>确认教师打开链接后能看到核心表、两个视图和AI字段。</li>
+        <li>检查链接权限，不公开与作业无关的个人资料。</li>
+      </ul>
+    </section>
+
+    <footer class="footer"><span>线上作业4 / 学期行动与机会系统 V1.0</span><a href="index.html">打开应用展示页</a></footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="submission.js"></script>
+</body>
+</html>

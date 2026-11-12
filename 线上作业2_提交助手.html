@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>线上作业2提交助手</title>
+  <style>
+    :root {
+      --paper: #f7f8f4;
+      --ink: #171b17;
+      --muted: #5e665f;
+      --line: #d8ddd5;
+      --green: #1f7048;
+      --green-soft: #e5f0e8;
+      --orange: #e85d2a;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(rgba(23, 27, 23, .045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(23, 27, 23, .045) 1px, transparent 1px),
+        var(--paper);
+      background-size: 28px 28px;
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+      line-height: 1.75;
+    }
+    button { font: inherit; }
+    .page { width: min(1080px, calc(100% - 32px)); margin: auto; padding: 34px 0 70px; }
+    .masthead {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: end;
+      padding: 28px 0 34px;
+      border-top: 6px solid var(--ink);
+      border-bottom: 1px solid var(--ink);
+    }
+    .eyebrow { margin: 0 0 14px; color: var(--green); font-size: 13px; font-weight: 800; letter-spacing: .12em; }
+    h1 { margin: 0; font-size: clamp(38px, 6vw, 74px); line-height: .98; }
+    .subtitle { max-width: 720px; margin: 20px 0 0; color: var(--muted); font-size: 17px; }
+    .issue { min-width: 150px; padding: 16px; border: 1px solid var(--ink); background: var(--white); }
+    .issue strong { display: block; font-size: 42px; line-height: 1; }
+    .issue span { display: block; margin-top: 8px; color: var(--muted); font-size: 13px; }
+    .metrics { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+    .metric { padding: 7px 12px; border: 1px solid var(--line); background: rgba(255,255,255,.8); color: var(--muted); font-size: 13px; }
+    .metric b { color: var(--ink); }
+    .notice { display: grid; grid-template-columns: 8px minmax(0, 1fr); gap: 16px; margin-top: 24px; padding: 18px 20px; border: 1px solid #c9d8cd; background: var(--green-soft); }
+    .notice::before { content: ""; background: var(--green); }
+    .notice p { margin: 0; }
+    .section { padding: 34px 0 38px; border-bottom: 1px solid var(--ink); }
+    .section-head { display: flex; gap: 20px; align-items: flex-start; justify-content: space-between; margin-bottom: 20px; }
+    .section-index { display: block; margin-bottom: 8px; color: var(--orange); font-size: 12px; font-weight: 800; letter-spacing: .1em; }
+    h2 { margin: 0; font-size: clamp(24px, 3.5vw, 38px); line-height: 1.2; }
+    .hint { margin: 8px 0 0; color: var(--muted); font-size: 14px; }
+    .copy { flex: 0 0 auto; min-width: 96px; padding: 9px 14px; border: 1px solid var(--ink); color: var(--white); background: var(--ink); cursor: pointer; font-weight: 700; }
+    .copy:hover { background: var(--green); border-color: var(--green); }
+    .copy.copied { color: var(--ink); background: #cce9d7; border-color: var(--green); }
+    .copy-block { margin: 0; padding: 22px; border: 1px solid var(--line); background: rgba(255,255,255,.92); white-space: pre-wrap; overflow-wrap: anywhere; font-size: 16px; line-height: 1.9; user-select: text; }
+    .short { font-size: 19px; }
+    .refs { font-size: 14px; line-height: 1.7; }
+    .refs p { margin: 0 0 12px; }
+    .refs a { color: var(--green); text-underline-offset: 3px; }
+    .checklist { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+    .checklist li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 12px; align-items: start; }
+    .checklist li::before { content: ""; width: 17px; height: 17px; margin-top: 5px; border: 2px solid var(--ink); background: var(--white); }
+    .footer { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; padding-top: 24px; color: var(--muted); font-size: 13px; }
+    .toast { position: fixed; right: 20px; bottom: 20px; padding: 11px 16px; color: var(--white); background: var(--ink); opacity: 0; transform: translateY(14px); pointer-events: none; transition: .18s; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    @media (max-width: 720px) {
+      .page { width: calc(100% - 22px); padding-top: 22px; }
+      .masthead { grid-template-columns: 1fr; }
+      .issue { width: 130px; }
+      .section-head { align-items: flex-end; }
+      .copy-block { padding: 16px; font-size: 15px; }
+      .copy { min-width: 80px; padding: 8px 11px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">ONLINE ASSIGNMENT 02 / AI READING</p>
+        <h1>AI辅助<br>微型综述</h1>
+        <p class="subtitle">线上作业2提交内容。按下面的分区复制到飞书表单即可，正文、参考文献、反思和声明已经分开整理。</p>
+        <div class="metrics">
+          <span class="metric"><b>446</b> 个字符</span>
+          <span class="metric"><b>394</b> 个汉字</span>
+          <span class="metric"><b>4</b> 篇文献</span>
+          <span class="metric"><b>1</b> 处证据边界</span>
+        </div>
+      </div>
+      <div class="issue"><strong>02</strong><span>AI阅读<br>个人作业</span></div>
+    </header>
+
+    <aside class="notice">
+      <div><p><strong>提交前必须做一件事：</strong>打开网页底部的4个DOI链接，真实核对题名、年份、期刊和主要结论。AI参与声明应与你的实际核查过程一致。</p></div>
+    </aside>
+
+    <section class="section">
+      <div class="section-head"><div><span class="section-index">01 / 研究主题</span><h2>研究问题</h2></div><button class="copy" data-copy-target="topic">复制</button></div>
+      <div class="copy-block short" id="topic">AI能否替代传统水文模型，为城市洪涝提供可靠预警？</div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><span class="section-index">02 / 核心内容</span><h2>微型综述正文</h2><p class="hint">粘贴到“核心内容”栏，正文含参考文献引注。</p></div><button class="copy" data-copy-target="body">复制</button></div>
+      <div class="copy-block" id="body">我的研究问题是：在城市洪涝预警中，人工智能能否替代传统水文模型？现有研究在提高预测效率上较为一致。基于长短期记忆网络的模型在241个资料完整的流域中取得了优于传统概念模型的表现[1]；综述研究也认为，机器学习能够利用雨量、水位等数据提升洪涝预测能力[2]；全球尺度研究进一步显示，AI可在缺乏测站的流域提前最多5天预警，效果达到或超过现有全球系统当日预报[3]；上海、广州的城市研究则把机器学习作为物理模型的快速替代方案，将计算速度提高四个数量级以上[4]。不过，这些结果尚不足以证明AI可以整体取代传统水文模型。前三项研究依赖大量历史或公开数据，城市研究中的模型又以物理模型生成的洪涝情景为训练基础，跨城市、低数据条件下的泛化能力仍缺少直接证据；预测精度较高也不等于模型能够解释洪涝形成过程。我的阶段性判断是：AI更适合作为实时预测和模型加速层，传统水文模型仍应承担机理约束、情景生成和异常校核。只有当AI在跨城市盲测、极端事件和资料稀缺地区都保持稳定，才可以讨论在更大范围内替代传统模型。</div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><span class="section-index">03 / 参考文献</span><h2>国标格式文献表</h2><p class="hint">与正文一起提交，参考文献不计入正文字数。</p></div><button class="copy" data-copy-target="refs">复制</button></div>
+      <div class="copy-block refs" id="refs"><p>[1] KRATZERT F, KLOTZ D, BRENNER C, et al. Rainfall-runoff modelling using Long Short-Term Memory (LSTM) networks[J]. Hydrology and Earth System Sciences, 2018, 22(11): 6005-6022. DOI: <a href="https://doi.org/10.5194/hess-22-6005-2018" target="_blank" rel="noreferrer">10.5194/hess-22-6005-2018</a>.</p>
+<p>[2] MOSAVI A, OZTURK P, CHAU K W. Flood prediction using machine learning models: Literature review[J]. Water, 2018, 10(11): 1536. DOI: <a href="https://doi.org/10.3390/w10111536" target="_blank" rel="noreferrer">10.3390/w10111536</a>.</p>
+<p>[3] NEARING G, COHEN D, DUBE V, et al. Global prediction of extreme floods in ungauged watersheds[J]. Nature, 2024, 627(8004): 559-563. DOI: <a href="https://doi.org/10.1038/s41586-024-07145-1" target="_blank" rel="noreferrer">10.1038/s41586-024-07145-1</a>.</p>
+<p>[4] XIE T, ZHANG M, LIAN J, et al. A generalizable WebGIS-machine learning system for real-time urban flood forecasting[J]. Urban Climate, 2026, 65: 102741. DOI: <a href="https://doi.org/10.1016/j.uclim.2025.102741" target="_blank" rel="noreferrer">10.1016/j.uclim.2025.102741</a>.</p></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><span class="section-index">04 / 一句话反思</span><h2>我的判断</h2></div><button class="copy" data-copy-target="reflection">复制</button></div>
+      <div class="copy-block short" id="reflection">AI帮我比较了4篇资料在数据条件、验证场景和“替代程度”上的差异；我最终判断AI更适合做实时预测和物理模型的加速层，而不宜在跨城市验证不足时替代传统模型。</div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><span class="section-index">05 / AI参与声明</span><h2>人机分工说明</h2><p class="hint">提交前请确认声明与你的实际核查过程一致。</p></div><button class="copy" data-copy-target="statement">复制</button></div>
+      <div class="copy-block" id="statement">使用的 AI 工具：OpenAI Codex（GPT-5）。
+AI 参与的环节：检索；阅读与摘要；构思；写作初稿；数据处理（文献元数据核对）。
+AI 做了什么：检索候选论文；依据论文摘要与正文提取研究问题、方法、结论和局限；比较4篇资料并形成综述初稿。
+我做了什么（我的判断、取舍和修改）：我选定“AI能否替代传统水文模型”作为研究问题，并根据证据边界作出“AI更适合作为实时预测与模型加速层”的阶段性判断。我检查并修改了AI生成的表述，保留证据不足和不确定性，没有把模型提速等同于全面替代。
+我核查了哪些内容，怎么核查的：我打开文献页面，核对题名、作者、年份、期刊、卷期和DOI，并对照摘要检查正文中的关键结论。
+目前仍不确定的地方：AI在不同城市、极端事件和资料稀缺条件下的泛化能力仍缺少统一验证；“替代传统模型”的具体含义也有待进一步界定。
+我确认以上说明属实，并对提交的作品负责。署名：磨帅齐</div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><span class="section-index">06 / 提交检查</span><h2>最后核对</h2></div></div>
+      <ul class="checklist">
+        <li>学生姓名填写“磨帅齐”，学号由你本人填写。</li>
+        <li>作业分类选择“线上作业2：AI阅读”，提交日期选择实际提交当天。</li>
+        <li>研究主题填写上方研究问题；核心内容粘贴正文与参考文献。</li>
+        <li>“作品链接”是选填项，没有其他作品文件时可以不填。</li>
+        <li>真实打开4个DOI页面核查后再提交AI参与声明。</li>
+      </ul>
+    </section>
+
+    <footer class="footer"><span>线上作业2 / AI辅助微型综述</span><span>正文446个字符，其中汉字394个</span></footer>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite">已复制</div>
+  <script>
+    const toast = document.getElementById("toast");
+    let timer;
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(timer);
+      timer = setTimeout(() => toast.classList.remove("show"), 1600);
+    }
+    function fallbackCopy(text) {
+      const area = document.createElement("textarea");
+      area.value = text;
+      area.style.position = "fixed";
+      area.style.opacity = "0";
+      document.body.appendChild(area);
+      area.select();
+      const ok = document.execCommand("copy");
+      area.remove();
+      return ok;
+    }
+    document.querySelectorAll("[data-copy-target]").forEach(button => {
+      button.addEventListener("click", async () => {
+        const target = document.getElementById(button.dataset.copyTarget);
+        const text = target.innerText.trim();
+        let copied = false;
+        try {
+          await navigator.clipboard.writeText(text);
+          copied = true;
+        } catch (error) {
+          copied = fallbackCopy(text);
+        }
+        if (!copied) {
+          showToast("复制失败，请手动选择文字");
+          return;
+        }
+        button.textContent = "已复制";
+        button.classList.add("copied");
+        showToast("已复制到剪贴板");
+        setTimeout(() => {
+          button.textContent = "复制";
+          button.classList.remove("copied");
+        }, 1600);
+      });
+    });
+  </script>
+</body>
+</html>
